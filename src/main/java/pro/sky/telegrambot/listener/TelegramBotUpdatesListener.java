@@ -52,7 +52,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
     private void sendWelcomeMessage(long chatId) {
-        SendMessage message = new SendMessage(chatId, "Привет! Я ваш бот-напоминалка. Отправьте мне сообщение в формате: dd.MM.yyyy HH:mm Текст напоминания");
+        SendMessage message = new SendMessage(chatId, "Привет! Я твой бот-напоминалка. Отправьте мне сообщение в формате: dd.MM.yyyy HH:mm Текст напоминания");
         telegramBot.execute(message);
     }
 

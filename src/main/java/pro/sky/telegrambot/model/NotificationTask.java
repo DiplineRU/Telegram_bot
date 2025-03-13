@@ -21,7 +21,9 @@ public class NotificationTask {
 
     @Column(name = "is_sent", nullable = false)
     private boolean isSent;
+    public NotificationTask(){
 
+    }
 
     public NotificationTask(Long chatId, String message, LocalDateTime notificationDateTime) {
         this.chatId = chatId;
