@@ -63,6 +63,8 @@ public class NotificationTaskService {
                 long s = zoneDateTime.toInstant().toEpochMilli() / 1000;
                 if (s + 100 > sec) {
                     sendNotification(task);
+                    task.setSent(true);
+                    notificationTaskRepository.save(task);
                 }
             }
         }
