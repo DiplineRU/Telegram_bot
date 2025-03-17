@@ -57,7 +57,6 @@ public class NotificationTaskService {
 
         for (NotificationTask task : tasks) {
             if (!task.isSent()) {
-                ZonedDateTime z = task.getNotificationDateTime().atZone(ZoneId.of("Europe/Moscow"));
                 sendNotification(task);
                 task.setSent(true);
                 notificationTaskRepository.save(task);
