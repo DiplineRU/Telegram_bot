@@ -52,20 +52,15 @@ public class NotificationTaskService {
 
     public void sendNotifications(LocalDateTime notificationDateTime) {
         logger.info("Checking notifications for time: {}", notificationDateTime);
-        ZonedDateTime zoneDateTime = notificationDateTime.atZone(ZoneId.of("Europe/Moscow"));
-        long sec = zoneDateTime.toInstant().toEpochMilli() / 1000;
         List<NotificationTask> tasks = notificationTaskRepository.findAll();
         logger.info("Found {} tasks to notify", tasks.size());
 
         for (NotificationTask task : tasks) {
             if (!task.isSent()) {
                 ZonedDateTime z = task.getNotificationDateTime().atZone(ZoneId.of("Europe/Moscow"));
-                long s = zoneDateTime.toInstant().toEpochMilli() / 1000;
-                if (s + 100 > sec) {
-                    sendNotification(task);
-                    task.setSent(true);
-                    notificationTaskRepository.save(task);
-                }
+                sendNotification(task);
+                task.setSent(true);
+                notificationTaskRepository.save(task);
             }
         }
     }
